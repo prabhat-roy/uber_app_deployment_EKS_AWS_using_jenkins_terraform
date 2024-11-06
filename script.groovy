@@ -23,6 +23,9 @@ def trivyfs() {
         sh "trivy fs ."
 }
 
+def dependencies() {
+        sh "npm install"
+}
 def docker() {
         sh '''
         docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} .

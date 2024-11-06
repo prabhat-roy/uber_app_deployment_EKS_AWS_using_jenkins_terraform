@@ -1,11 +1,15 @@
 def gv_script
 pipeline {
     agent any
+    tools {
+        jdk 'Java'
+        nodejs 'Node_JS'
+    }
     environment {
-         GITHUB_URL = "https://github.com/prabhat-roy/python_app_deployment_EKS_AWS_using_jenkins_terraform.git"
+         GITHUB_URL = "https://github.com/prabhat-roy/node_js_app_deployment_EKS_AWS_using_jenkins_terraform.git"
          BRANCH = "main"
          SCANNER_HOME =tool "SonarQube"
-         IMAGE_NAME = "python-sample-image"         
+         IMAGE_NAME = "node-js-sample-image"         
          ACC_ID = "873330726955"
          REGION = "us-east-1"
          ECR = "${ACC_ID}.dkr.ecr.${REGION}.amazonaws.com"
@@ -50,6 +54,13 @@ pipeline {
             steps {
                 script {
                     gv_script.trivyfs()
+                }
+            }
+        }
+        stage("Install Dependencies") {
+            steps {
+                script {
+                    gv_script.dependencies()
                 }
             }
         }

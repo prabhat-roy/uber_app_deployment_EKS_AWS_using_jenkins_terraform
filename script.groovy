@@ -68,7 +68,7 @@ def ecr() {
 }
 
 def deploy() {
-        sh '''  helm upgrade first-release --install node-js-helm-chart --set image.tag=$BUILD_NUMBER             
+        sh '''  helm upgrade first-release --install uber-helm-chart --set image.tag=$BUILD_NUMBER             
                 kubectl get nodes
                 kubectl get pods -A
                 kubectl get ns
